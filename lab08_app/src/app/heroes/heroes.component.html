@@ -1,0 +1,30 @@
+<h2>My Heroes</h2>
+
+<!-- Exercise 1: *ngFor to list heroes, click binding for selection -->
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+      [class.selected]="hero === selectedHero"
+      (click)="onSelect(hero)">
+    <span class="badge">
+      {{ hero.id }}
+    </span>
+    <!-- Exercise 2: removeSpaces pipe filters out dashes -->
+    {{ hero.name | removeSpaces }}
+  </li>
+</ul>
+
+<!-- Exercise 1: *ngIf to show detail only when a hero is selected -->
+<div *ngIf="selectedHero">
+  <h2>{{ selectedHero.name | removeSpaces | uppercase }} Details</h2>
+  <div><span>id: </span>{{ selectedHero.id }}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div>
+
+  <!-- Exercise 3: input with custom directive -->
+  <div>
+    <label for="format-input">Format Input (blur to uppercase): </label>
+    <input id="format-input" type="text" appInputFormat />
+  </div>
+</div>
